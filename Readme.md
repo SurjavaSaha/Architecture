@@ -1,5 +1,5 @@
 
-# CRM Micro-Service Technical Specification 
+# Ticketing Service Technical Specification 
 # Introduction 
 This service will be responsible for creating and assigning any tickets to the specific agents
 # Existing System
@@ -25,6 +25,7 @@ We are going to build a ticketing service which will reduce the manual labour li
 1. *Should be capable of marking agent as not available.*
 1. *Should be able to reassign pending tickets*
 1. *Deleting agents/groups should be available.*
+1. *Any changes should be reflected in an audit log table*
 ### Technical and Non-Functional Requirements
 *To be discussed*
 ## System Design
@@ -71,6 +72,17 @@ We are going to build a ticketing service which will reduce the manual labour li
 | groupId               | UUID      | NOT NULL              |
 | name                  | VARCHAR   | NOT NULL              |
 | activeStatus          | BOOL      | NOT NULL              |
+
+*Ticketing service audit log table* - **Need discusion on the data needed to be stored.**
+
+### ***Table:* ticketing_service_audit_log**
+
+| NAME                  | TYPE              | CONSTRAINTS           |
+| --------------------- | ---------         | --------------------- |
+| id                    | UUID              | NOT NULL              |
+| ticketID              | VARCHAR           | NOT NULL              |
+| userID                | INT               | NOT NULL              |
+| ticketDetails         | JsonStructure     | NOT NULL              |
 #
 ### APIs and Functionality
 #### *Ticket Related APIs.*
